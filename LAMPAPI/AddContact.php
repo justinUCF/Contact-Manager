@@ -1,11 +1,11 @@
 <?php
 	$inData = getRequestInfo();
 	
-	$firstName = $inData["firstName"];
-	$lastName = $inData["lastName"];
-	$phone = $inData["phone"];
-	$email = $inData["email"];
-	$userId = $inData["userId"];
+	$FirstName = $inData["FirstName"];
+	$LastName = $inData["LastName"];
+	$Phone = $inData["Phone"];
+	$Email = $inData["Email"];
+	$UserID = $inData["UserID"];
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 
@@ -17,7 +17,7 @@
 	{
 		// Check if contact with same email already exists for this user
 		$checkStmt = $conn->prepare("SELECT ID FROM Contacts WHERE Email = ? AND UserID = ?");
-		$checkStmt->bind_param("si", $email, $userId);
+		$checkStmt->bind_param("si", $Email, $UserID);
 		$checkStmt->execute();
 		$checkStmt->store_result();
 
@@ -31,7 +31,7 @@
 		{
 			$checkStmt->close();
 			$stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Phone, Email, UserID) VALUES (?, ?, ?, ?, ?)");
-			$stmt->bind_param("ssssi", $firstName, $lastName, $phone, $email, $userId);
+			$stmt->bind_param("ssssi", $FirstName, $LastName, $Phone, $Email, $UserID);
 			$stmt->execute();
 			$stmt->close();
 			$conn->close();
