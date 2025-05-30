@@ -1,0 +1,69 @@
+INPUT login: 'SamH' | password: '0cbc6611f5540bd0809a388dc95a615b'
+ROWS returned: 0
+INPUT login: 'SamH' | password: '098f6bcd4621d373cade4e832627b4f6'
+ROWS returned: 0
+INPUT login: 'Jdoe' | password: '1a1dc91c907325c69271ddf0c944bc72'
+ROWS returned: 0
+INPUT login: 'Jdoe' | password: '1a1dc91c907325c69271ddf0c944bc72'
+ROWS returned: 0
+INPUT login: 'Jdoe' | password: '1a1dc91c907325c69271ddf0c944bc72'
+ROWS returned: 0
+INPUT login: 'fake user' | password: '12345'
+ROWS returned: 0
+RAW INPUT: {
+  "login": "Jdoe",
+  "password": "pass"
+}
+PARSED JSON: Array
+(
+    [login] => Jdoe
+    [password] => pass
+)
+
+INPUT login: 'Jdoe' | password: 'pass'
+ROWS returned: 1
+RAW INPUT: {"login":"JDoe","password":"1a1dc91c907325c69271ddf0c944bc72"}
+PARSED JSON: Array
+(
+    [login] => JDoe
+    [password] => 1a1dc91c907325c69271ddf0c944bc72
+)
+
+INPUT login: 'JDoe' | password: '1a1dc91c907325c69271ddf0c944bc72'
+ROWS returned: 0
+RAW INPUT: {
+  "login": "Jdoe",
+  "password": "bruh1234"
+}
+PARSED JSON: Array
+(
+    [login] => Jdoe
+    [password] => bruh1234
+)
+
+INPUT login: 'Jdoe' | password: 'bruh1234'
+ROWS returned: 0
+RAW INPUT: {
+  "login": "Jdoe",
+  "password": "bruh1234"
+}
+PARSED JSON: Array
+(
+    [login] => Jdoe
+    [password] => bruh1234
+)
+
+INPUT login: 'Jdoe' | password: 'bruh1234'
+ROWS returned: 0
+RAW INPUT: {
+    "Login": "test",
+    "Password": "1234"
+}
+PARSED JSON: Array
+(
+    [Login] => test
+    [Password] => 1234
+)
+
+INPUT login: 'MISSING' | password: 'MISSING'
+ROWS returned: 0

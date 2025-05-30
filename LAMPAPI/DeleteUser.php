@@ -1,7 +1,6 @@
 <?php
 	$inData = getRequestInfo();
 	
-	$UserID = $inData["UserID"];
     $ID = $inData["ID"];
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
@@ -12,25 +11,25 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT ID FROM Contacts WHERE UserID = ? AND ID = ?");
-		$stmt->bind_param("ii", $UserID, $ID);
+		$stmt = $conn->prepare("SELECT ID FROM Users WHERE ID = ?");
+		$stmt->bind_param("i", $ID);
 		$stmt->execute();
 		$stmt->store_result();
 
 		if($stmt->num_rows <= 0){
 			$stmt->close();
 			$conn->close();
-			returnWithError("Contact does not exist");
+			returnWithError("User does not exist");
 		}
 		else{
 			$stmt = $conn->prepare(
-				"DELETE FROM Contacts WHERE UserID = ? AND ID = ?"
+				"DELETE FROM Users WHERE ID = ?"
 			);
-			$stmt->bind_param("ii", $UserID, $ID);
+			$stmt->bind_param("i", $ID);
 			$stmt->execute();
 			$stmt->close();
 			$conn->close();
-			returnWithSuccess("Contact deleted.");
+			returnWithSuccess("User deleted.");
 		}
 	}
 

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Contact Page</title>
+	<script type="text/javascript" src="js/md5.js"></script>
+	<script type="text/javascript" src="js/code.js"></script>
+    <link href="css/styles.css" rel="stylesheet">	
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+</head>
+<body>
+<header>
+	<h2>Space Opera Contact Manager</h2>
+	<h3>Managing contacts for your home away from home!</h3>
+</header>
+	
+
+
+<nav>
+    <ul>
+      <li><a href="index.html">Back to Home</a></li>
+	  <br>
+      <li><a href="#">Play a cool song!</a></li> <!-- make it work-->
+    </ul>
+  </nav>
+
+<div id="searchArea">
+	<div style="display: flex; gap: 10px; padding-bottom: 20px;">
+		<input type="text" id="searchText" placeholder="Type to Search" /><br />
+		<button type="button" id="searchButton" class="buttons" onclick="doSearch();"> Search Contacts </button>
+		<button type="button" id="addButton" class="buttons" onclick="addContact();"> Add Contact </button>
+	</div>
+</div>
+
+<element id="contactTable">
+	<table>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+	<th>Phone</th>
+  </tr>
+  <tr>
+    <td>Emil</td>
+    <td>Tobias</td>
+    <td>ET@mail</td>
+	<th>222</th>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td>14</td>
+    <td>10</td>
+  </tr>
+</table>
+</element>
+
+
+
+
+</body>
+</html>
+
+

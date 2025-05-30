@@ -1,0 +1,15 @@
+Contacts
+Create - CreateContact.php
+Read - FindContact.php
+Update - UpdateContact.php
+Delete - DeleteContact.php
+
+Users
+Create - CreateUser.php
+Read - FindUser.php
+Update - UpdateUser.php
+Delete - DeleteUser.php
+
+Users/Login
+Login.php
+Logout.php
