@@ -175,17 +175,19 @@ function clickRegister() {
 // --------------------
 
 function addContact() {
-    const firstname = document.getElementById("contactTextFirst").value;
-    const lastname = document.getElementById("contactTextLast").value;
-    const phonenumber = document.getElementById("contactTextNumber").value;
-    const emailaddress = document.getElementById("contactTextEmail").value;
-
+    const firstName = document.getElementById("contactTextFirst").value;
+    const lastName = document.getElementById("contactTextLast").value;
+    const phone = document.getElementById("contactTextNumber").value;
+    const email = document.getElementById("contactTextEmail").value;
+	console.log("Phone:", phone); 
+    console.log("Email:", email);
+    console.log("userId being used to add contact:", userId);
     const tmp = {
-        firstName: firstname,
-        lastName: lastname,
-        phoneNumber: phonenumber,
-        emailAddress: emailaddress,
-        userId: userId
+        FirstName: firstName,
+        LastName: lastName,
+        Phone: phone,
+        Email: email,
+        UserID: userId  // make sure this variable is set globally during login
     };
 
     const jsonPayload = JSON.stringify(tmp);
@@ -197,18 +199,33 @@ function addContact() {
 
     try {
         xhr.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                console.log("Contact added");
-                document.getElementById("addMe").reset();
-                loadContacts();
+            if (this.readyState === 4) {
+                if (this.status === 200) {
+                    console.log("Contact added successfully");
+                    document.getElementById("addMe").reset();
+                    loadContacts();  // Refresh contact list
+                } else {
+                    console.error("Error adding contact:", xhr.responseText);
+                    alert("Failed to add contact: " + xhr.responseText);
+                }
             }
         };
         xhr.send(jsonPayload);
     } catch (err) {
-        console.log(err.message);
+        console.log("Request failed: " + err.message);
     }
 }
 
+/* Brett's helper functions */
+function showContactForm() {
+            document.getElementById("contactForm").style.display = "block";
+}
+
+function hideContactForm() {
+    document.getElementById("contactForm").style.display = "none";
+}
+
+/* end helper functions */
 
 function loadContacts() {
     let tmp = {
@@ -233,8 +250,8 @@ function loadContacts() {
                     text += "<tr id='row" + i + "'>";
                     text += "<td id='first_Name" + i + "'><span>" + jsonObject.results[i].FirstName + "</span></td>";
                     text += "<td id='last_Name" + i + "'><span>" + jsonObject.results[i].LastName + "</span></td>";
-                    text += "<td id='email" + i + "'><span>" + jsonObject.results[i].EmailAddress + "</span></td>";
-                    text += "<td id='phone" + i + "'><span>" + jsonObject.results[i].PhoneNumber + "</span></td>";
+                    text += "<td id='email" + i + "'><span>" + jsonObject.results[i].Email + "</span></td>";
+                    text += "<td id='phone" + i + "'><span>" + jsonObject.results[i].Phone + "</span></td>";
                     text += "<td>" +
                         "<button onclick='editRow(" + i + ")'>Edit</button>" +
                         "<button onclick='saveRow(" + i + ")' style='display:none;'>Save</button>" +
@@ -326,8 +343,8 @@ function deleteRow(i) {
     if (!confirm("Delete contact: " + firstName + " " + lastName + "?")) return;
 
     const tmp = {
-        id: id,
-        userId: userId
+        ID: id,
+        UserID: userId
     };
 
     const jsonPayload = JSON.stringify(tmp);
@@ -440,5 +457,3 @@ function deleteUser() {
         console.log(err.message);
     }
 }
-
-

@@ -202,6 +202,36 @@ header {
 }
 
 
+#contactForm {
+            display: none;
+            margin: auto;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #5b5f77;
+            color:#ffffff;
+            border: 1px solid #000000;
+            width: 300px;
+        }
 
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffffd0; /* light opaque white, readable over background */
+    color: #000000; /* text is black for contrast */
+    border-radius: 8px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin: 0 3px;
+}
 
 
