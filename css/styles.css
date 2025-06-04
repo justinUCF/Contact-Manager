@@ -29,6 +29,18 @@ body
     border-radius: 25px;
 }
 
+#registerDiv
+{
+    font-size: 40px;
+    width: 50%;
+    margin: auto;
+    margin-top: 100px;
+    padding: 20px;
+    background-color: #5b5f77;
+    border-radius: 25px;
+
+}
+/*
 #loggedInDiv
 {
     font-size: 30px;
@@ -47,6 +59,7 @@ body
     padding: 25px;
     background-color: #b2b2b2;
 }
+*/
 
 .buttons
 {
@@ -54,38 +67,52 @@ body
     border-radius: 25px;
     width: 50%;
     margin-left: 5%;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: /*'Ubuntu', sans-serif, */Verdana;
+    background-color: #ffffff;
+    color: #101010;
 }
 
 .buttons:hover{
-    background-color: #00d5124f;
-    color: #FFFFFF;
-    opacity: 50%;
+    background-color: #43454c;
+    color: #ffffff;
+    opacity: 100%;
 }
 
 #loginName
 {
 	font-size: 30px;
+    font-family: /*'Ubuntu', sans-serif, */Verdana;
 }
 #loginPassword
 {
 	font-size: 30px;
+    font-family: Verdana;
 }
+
+
+
+
+
+
 #registerFirst
 {
     font-size: 30px;
+    font-family: Verdana;
 }
 #registerLast
 {
     font-size: 30px;
+    font-family: Verdana;
 }
 #searchText
 {
 	font-size: 30px;
+    font-family: Verdana;
 }
 #colorText
 {
 	font-size: 30px;
+    font-family: Verdana;
 }
 
 input[type="text"],input[type="password"]{
@@ -94,9 +121,10 @@ input[type="text"],input[type="password"]{
     width: 80%;
     margin-left: 10%;
     margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Verdana;
+    font-size: 24px;
 }
-
+/*
 #inner-title{
     display: inline-block;
     font-size: 20px;
@@ -108,16 +136,27 @@ input[type="text"],input[type="password"]{
     color: #00aaff;
     padding-bottom: 100px;
 }
-
+*/
 #loginResult{
     display: inline-block;
-    font-size: 0.8em;
+    font-size: 0.6em;
     width: 90%;
     text-align: center;
     margin-left: 5%;
     margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+    font-family: Verdana;
+    color: #ffff00;
+}
+
+#signupResult{
+    display: inline-block;
+    font-size: 0.6em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: Verdana;
+    color: #ffff00;
 }
 
 #userName{
@@ -125,6 +164,9 @@ input[type="text"],input[type="password"]{
     width: 80%;
     margin-left: 10%;
     text-align: center;
+    color:#ffffff;
+    font-family: Verdana;
+    font-size: 30px;
 }
 
 #logoutButton{
@@ -132,6 +174,7 @@ input[type="text"],input[type="password"]{
     margin-left: 40%;
 }
 
+/*?*/
 select{
     width: 30%;
     margin-left: 35%;
@@ -139,11 +182,12 @@ select{
     font-size: 0.75em;
     font-family: 'Ubuntu', sans-serif;
 }
-
+/*
 #colorSearchResult{
     display: none;
 }
-
+*/
+/*
 #colorAddResult{
     display: inline-block;
     font-size: 0.8em;
@@ -155,6 +199,7 @@ select{
     font-family: 'Ubuntu', sans-serif;
     color: #95060a;
 }
+    */
 
 /* Fresh additions */
 
@@ -180,7 +225,7 @@ nav ul {
     float: left;
     padding: 10px;
     width: 90%;
-    background-color: #5b5f77;
+    background-color: #6c717d;
     border-radius: 25px;
     color:#ffffff;
 }
@@ -193,11 +238,12 @@ header {
     padding-left: 20px;
     padding-right: 20px;
     /*padding-top: 1px;
-    padding-bottom: 1px;*/
+    padding-bottom: 1px; */
     text-align: center;
     color:#ffffff;
     width:fit-content;
     border-radius: 25px;
+    font-family: Verdana;
 
 }
 
@@ -211,6 +257,7 @@ header {
             color:#ffffff;
             border: 1px solid #000000;
             width: 300px;
+            font-family: Verdana;
         }
 
 
@@ -223,6 +270,7 @@ table {
     background-color: #ffffffd0; /* light opaque white, readable over background */
     color: #000000; /* text is black for contrast */
     border-radius: 8px;
+    font-family: Verdana;
 }
 
 th, td {

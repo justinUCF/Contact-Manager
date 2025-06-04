@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Contact Page</title>
+	<title>Contact Page - Space Opera Contact Manager</title>
 	<script type="text/javascript" src="js/md5.js"></script>
 	<script type="text/javascript" src="js/code.js"></script>
     <link href="css/styles.css" rel="stylesheet">	
@@ -11,28 +11,37 @@
 </head>
 <body onload="readCookie(); loadContacts();">
 <header>
-	<h2>Space Opera Contact Manager</h2>
-	<h3>Managing contacts for your home away from home!</h3>
+	<h2 style="font-size: 40px; padding-top: 10px;">Space Opera Contact Manager</h2>
+	<h3 style="padding-bottom: 10px;">Managing contacts for your home away from home!</h3>
 </header>
 	
 <div id="userName" style="margin: 15px; font-weight: bold;"></div>
 <audio id="themeSong" src="audio/CallistoHnStrings.mp3"></audio>
 <nav>
     <ul>
-      <li><button onclick="window.location.href='index.html'">Back to Home</button>
-      </li>
-	  <br>
-      <li>
-      <button onclick="playSong()">Play a cool song!</button>
-    </li>
+        <li>
+            <button onclick="window.location.href='index.html'">Logout</button>
+        </li>
+        <br>
+        <li>
+            <button id="toggleSongBtn" onclick="playSong()">
+                &#9658; Galactic Radio
+            </button>
+        </li>
+        <li>
+            <a href="http://rickleinecker.com/Music.html" target="_blank">Callisto</a>
+        </li>
     </ul>
-  </nav>
+</nav>
+
+
+
 
 <div id="searchArea">
 	<div style="display: flex; gap: 10px; padding-bottom: 20px;">
 		<input type="text" id="searchText" placeholder="Type to Search" /><br />
-		<button type="button" id="searchButton" class="buttons" onclick="searchContacts();"> Search Contacts </button>
-		<button type="button" id="addButton" class="buttons" onclick="showContactForm();"> Add Contact </button>
+		<button type="button" id="searchButton" class="buttons" onclick="searchContacts();"style="margin-bottom: auto;"> Search Contacts </button>
+		<button type="button" id="addButton" class="buttons" onclick="showContactForm();"style="margin-bottom: auto;"> Add Contact </button>
     <button type="button" id="clearButton" class="buttons" onclick="clearSearch();" style="display:none;">Clear Search</button>
 </div>
   <!-- Hidden Contact Form -->
