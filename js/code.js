@@ -4,7 +4,7 @@ const extension = 'php';
 let userId = 0;
 let firstName = "";
 let lastName = "";
-const ids = [];
+let ids = [];
 
 // ----------------
 //  AUTHENTICATION
@@ -228,6 +228,7 @@ function hideContactForm() {
 /* end helper functions */
 
 function loadContacts() {
+    ids = [];
     let tmp = {
         search: "",
         userId: userId
@@ -246,22 +247,25 @@ function loadContacts() {
                 let jsonObject = JSON.parse(xhr.responseText);
                 let text = "<table border='1'>";
                 for (let i = 0; i < jsonObject.results.length; i++) {
-                    ids[i] = jsonObject.results[i].ID;
+                    ids.push(jsonObject.results[i].ID); 
                     text += "<tr id='row" + i + "'>";
                     text += "<td id='first_Name" + i + "'><span>" + jsonObject.results[i].FirstName + "</span></td>";
                     text += "<td id='last_Name" + i + "'><span>" + jsonObject.results[i].LastName + "</span></td>";
                     text += "<td id='email" + i + "'><span>" + jsonObject.results[i].Email + "</span></td>";
                     text += "<td id='phone" + i + "'><span>" + jsonObject.results[i].Phone + "</span></td>";
                     text += "<td>" +
-                        "<button onclick='editRow(" + i + ")'>Edit</button>" +
-                        "<button onclick='saveRow(" + i + ")' style='display:none;'>Save</button>" +
+                        "<button id='edit_button" + i + "' onclick='editRow(" + i + ")'>Edit</button>" +
+                        "<button id='save_button" + i + "' onclick='saveRow(" + i + ")' style='display:none;'>Save</button>" +
                         "<button onclick='deleteRow(" + i + ")'>Delete</button>" +
-                        "</td>";
-                    text += "</tr>";
+                        "</td></tr>";
                 }
                 text += "</table>";
                 document.getElementById("tbody").innerHTML = text;
+                if (document.getElementById("searchText").value.trim() === "") {
+                document.getElementById("clearButton").style.display = "none";
             }
+            }
+            
         };
         xhr.send(jsonPayload);
     } catch (err) {
@@ -307,12 +311,13 @@ function saveRow(i) {
     document.getElementById("save_button" + i).style.display = "none";
 
     const tmp = {
-        id: id,
-        newFirstName: firstName,
-        newLastName: lastName,
-        emailAddress: email,
-        phoneNumber: phone
-    };
+    ID: id,
+    UserID: userId,
+    FirstName: firstName,
+    LastName: lastName,
+    Phone: phone,
+    Email: email
+};
 
     const jsonPayload = JSON.stringify(tmp);
     const url = urlBase + '/UpdateContact.' + extension;
@@ -328,6 +333,7 @@ function saveRow(i) {
                 loadContacts();
             }
         };
+        console.log("Sending update:", JSON.stringify(tmp));
         xhr.send(jsonPayload);
     } catch (err) {
         console.log(err.message);
@@ -339,7 +345,6 @@ function deleteRow(i) {
     const firstName = document.getElementById("first_Name" + i).innerText;
     const lastName = document.getElementById("last_Name" + i).innerText;
     const id = ids[i];
-
     if (!confirm("Delete contact: " + firstName + " " + lastName + "?")) return;
 
     const tmp = {
@@ -394,7 +399,58 @@ function getUserInfo() {
         console.log(err.message);
     }
 }
+function searchContacts() {
+    const searchTerm = document.getElementById("searchText").value.trim();
 
+    if (searchTerm === "") {
+        loadContacts(); // nothing entered, show all
+        return;
+    }
+
+    document.getElementById("clearButton").style.display = "inline-block"; // <== SHOW the button
+
+    ids = [];
+    let tmp = {
+        search: searchTerm,
+        userId: userId
+    };
+
+    const jsonPayload = JSON.stringify(tmp);
+    const url = urlBase + '/FindContact.' + extension;
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const jsonObject = JSON.parse(xhr.responseText);
+            let text = "<table border='1'>";
+            for (let i = 0; i < jsonObject.results.length; i++) {
+                ids.push(jsonObject.results[i].ID);
+                text += "<tr id='row" + i + "'>";
+                text += "<td id='first_Name" + i + "'><span>" + jsonObject.results[i].FirstName + "</span></td>";
+                text += "<td id='last_Name" + i + "'><span>" + jsonObject.results[i].LastName + "</span></td>";
+                text += "<td id='email" + i + "'><span>" + jsonObject.results[i].Email + "</span></td>";
+                text += "<td id='phone" + i + "'><span>" + jsonObject.results[i].Phone + "</span></td>";
+                text += "<td>" +
+                    "<button id='edit_button" + i + "' onclick='editRow(" + i + ")'>Edit</button>" +
+                    "<button id='save_button" + i + "' onclick='saveRow(" + i + ")' style='display:none;'>Save</button>" +
+                    "<button onclick='deleteRow(" + i + ")'>Delete</button>" +
+                    "</td>";
+            }
+            text += "</table>";
+            document.getElementById("tbody").innerHTML = text;
+        }
+    };
+
+    xhr.send(jsonPayload);
+}
+function clearSearch() {
+    document.getElementById("searchText").value = "";
+    document.getElementById("clearButton").style.display = "none";
+    loadContacts();
+}
 function updateUser() {
     const newFirstName = document.getElementById("profileFirstName").value;
     const newLastName = document.getElementById("profileLastName").value;
@@ -456,4 +512,10 @@ function deleteUser() {
     } catch (err) {
         console.log(err.message);
     }
+}
+function playSong() {
+	const audio = document.getElementById("themeSong");
+	if (audio) {
+		audio.play();
+	}
 }

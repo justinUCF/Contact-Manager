@@ -12,7 +12,10 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email FROM Contacts WHERE FirstName LIKE ? AND UserID = ?");
+		$stmt = $conn->prepare("SELECT ID, FirstName, LastName, Phone, Email 
+                        FROM Contacts 
+                        WHERE FirstName LIKE ? AND UserID = ? 
+                        LIMIT 20");
 		$searchTerm = "%" . $inData["search"] . "%";
 		$stmt->bind_param("si", $searchTerm, $inData["userId"]);
 		$stmt->execute();
@@ -27,8 +30,7 @@
 			}
 
 			$searchCount++;
-			$searchResults .= '{"FirstName" : "' . addslashes($row["FirstName"]) . '", "LastName" : "' . addslashes($row["LastName"]) . '", "Phone" : "' . addslashes($row["Phone"]) . '", "Email" : "' . addslashes($row["Email"]) . '"}';
-		}
+			$searchResults .= '{"ID" : ' . $row["ID"] . ', "FirstName" : "' . addslashes($row["FirstName"]) . '", "LastName" : "' . addslashes($row["LastName"]) . '", "Phone" : "' . addslashes($row["Phone"]) . '", "Email" : "' . addslashes($row["Email"]) . '"}';		}
 
 		if ($searchCount == 0)
 		{

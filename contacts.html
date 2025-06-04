@@ -16,22 +16,25 @@
 </header>
 	
 <div id="userName" style="margin: 15px; font-weight: bold;"></div>
-
+<audio id="themeSong" src="audio/CallistoHnStrings.mp3"></audio>
 <nav>
     <ul>
-      <li><a href="index.html">Back to Home</a></li>
+      <li><button onclick="window.location.href='index.html'">Back to Home</button>
+      </li>
 	  <br>
-      <li><a href="#">Play a cool song!</a></li> <!-- make it work-->
+      <li>
+      <button onclick="playSong()">Play a cool song!</button>
+    </li>
     </ul>
   </nav>
 
 <div id="searchArea">
 	<div style="display: flex; gap: 10px; padding-bottom: 20px;">
 		<input type="text" id="searchText" placeholder="Type to Search" /><br />
-		<button type="button" id="searchButton" class="buttons" onclick="loadContacts();"> Search Contacts </button>
+		<button type="button" id="searchButton" class="buttons" onclick="searchContacts();"> Search Contacts </button>
 		<button type="button" id="addButton" class="buttons" onclick="showContactForm();"> Add Contact </button>
-    
-	</div>
+    <button type="button" id="clearButton" class="buttons" onclick="clearSearch();" style="display:none;">Clear Search</button>
+</div>
   <!-- Hidden Contact Form -->
     <div id="contactForm">
         <form id="addMe" onsubmit="event.preventDefault(); addContact();">

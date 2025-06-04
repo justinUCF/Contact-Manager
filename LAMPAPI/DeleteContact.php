@@ -3,6 +3,7 @@
 	
 	$UserID = $inData["UserID"];
     $ID = $inData["ID"];
+	error_log("DeleteContact: UserID=$UserID, ID=$ID");
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 
@@ -23,14 +24,17 @@
 			returnWithError("Contact does not exist");
 		}
 		else{
-			$stmt = $conn->prepare(
-				"DELETE FROM Contacts WHERE UserID = ? AND ID = ?"
-			);
+			$stmt = $conn->prepare("DELETE FROM Contacts WHERE UserID = ? AND ID = ?");
 			$stmt->bind_param("ii", $UserID, $ID);
-			$stmt->execute();
+		if ($stmt->execute()) {
+            error_log("DeleteContact: Contact deleted.");
+            returnWithSuccess("Contact deleted.");
+        } else {
+            error_log("DeleteContact error: " . $stmt->error);
+            returnWithError("Failed to delete contact.");
+        }
 			$stmt->close();
 			$conn->close();
-			returnWithSuccess("Contact deleted.");
 		}
 	}
 

@@ -35,6 +35,13 @@
 			$stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Phone, Email, UserID) VALUES (?, ?, ?, ?, ?)");
 			$stmt->bind_param("ssssi", $FirstName, $LastName, $Phone, $Email, $UserID);
 			$stmt->execute();
+			$contact = array(
+				"FirstName" => $FirstName,
+				"LastName" => $LastName,
+				"Phone" => $Phone,
+				"Email" => $Email,
+				"UserID" => $UserID
+			);
 			$stmt->close();
 			$conn->close();
 			returnWithSuccess("Contact created successfully.");
@@ -59,9 +66,14 @@
 		sendResultInfoAsJson($retValue);
 	}
 
-	function returnWithSuccess($msg)
+	function returnWithSuccess($msg, $contact = null)
 	{
+	if ($contact) {
+		$contact["success"] = $msg;
+		$retValue = json_encode($contact);
+	} else {
 		$retValue = '{"success":"' . $msg . '"}';
-		sendResultInfoAsJson($retValue);
+	}
+	sendResultInfoAsJson($retValue);
 	}
 ?>
