@@ -175,13 +175,14 @@ input[type="text"],input[type="password"]{
 }
 
 /*?*/
+/*
 select{
     width: 30%;
     margin-left: 35%;
     margin-top: 2%;
     font-size: 0.75em;
     font-family: 'Ubuntu', sans-serif;
-}
+}*/
 /*
 #colorSearchResult{
     display: none;
@@ -283,3 +284,18 @@ button {
 }
 
 
+#contactTextEmail {
+    font-size: 20px;
+    font-family: /*'Ubuntu', sans-serif, */Verdana;
+    border-radius: 20px;
+    width:80%;
+    margin-left: 10%;
+}
+
+#contactTextNumber {
+    font-size: 20px;
+    font-family: /*'Ubuntu', sans-serif, */Verdana;
+    border-radius: 20px;
+    width:80%;
+    margin-left: 10%;
+}
