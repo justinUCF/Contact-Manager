@@ -7,7 +7,7 @@ let lastName = "";
 let ids = [];
 
 // ----------------
-//  AUTHENTICATION
+//  AUTHENTICATION (change so shows on my profile as a contributor)
 // ----------------
 
 function doLogin() {
